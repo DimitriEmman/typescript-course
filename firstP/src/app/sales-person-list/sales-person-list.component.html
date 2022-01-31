@@ -1,0 +1,27 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Sales volume</th>
+            <th>Met quota?</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let salesPerson of salesPersons" [ngClass]="{'highlight': salesPerson.salesVolume <2}">
+           <td>{{salesPerson.firstName}}</td>
+           <td>{{salesPerson.lastName}}</td>
+           <td>{{salesPerson.email}}</td>
+           <td>{{salesPerson.salesVolume | currency: 'EUR'}}</td> 
+           <td>
+               <div *ngIf="salesPerson.salesVolume >1; else myelseblock">
+                   yes
+               </div>
+               <ng-template #myelseblock>No</ng-template>
+           </td>
+        </tr>
+    </tbody>
+
+</table>
